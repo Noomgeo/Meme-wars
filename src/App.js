@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
+
+import {
+  Route,
+  BrowserRouter as Router,
+  Switch,
+  Redirect
+} from 'react-router-dom';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Navbar from './Navbar';
+import Login from './Login';
+import Meme from './Meme';
+import Vote from './Vote';
+import Results from './Results';
 
-export default App;
+
+export default ()=> (
+  <Router>
+    <div>
+      <Navbar />
+
+      <Switch>
+        <Route exact path='/login' component={Login} />
+        <Route exact path='/meme' component={Meme} />
+
+        <Route exact path='/vote' component={Vote} />
+        <Route exact path='/results' component={Results} />
+        <Redirect from='/' to='/login' />
+      </Switch>
+
+      <footer></footer>
+    </div>
+  </Router>
+);
