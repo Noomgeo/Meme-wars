@@ -16,6 +16,11 @@
   flex-direction: row;
 }
 
+.Page {
+  padding-top: 80px;
+  height: calc( 100vh - 80px );
+}
+
 .Navbar h1 {
   color: #fffa;
   padding: 10px 0 10px 20px;
