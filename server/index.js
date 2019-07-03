@@ -8,6 +8,10 @@ const connection = new ORM('postgres://memewars:password@localhost:5432/memewars
 const modelsFactory = require('./models');
 const { User, Meme, Vote } = modelsFactory(connection, ORM);
 
+app.use ( express.static('build') );
+app.use( express.json() );
+
+
 const api = require('./api')(app, { User, Meme, Vote });
 
 connection.authenticate()

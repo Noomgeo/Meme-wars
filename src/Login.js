@@ -16,8 +16,15 @@ class Login extends React.Component {
     this.setState({ password: event.target.value })
 
   login = ()=> {
-    console.log('pretend to check password');
-    this.setState({ toVote: true })
+    fetch('/user', {
+      method: 'POST',
+      body: JSON.stringify({ name: this.state.username }),
+      headers: { 'Content-Type': 'application/json' },
+    }).then(response => response.json())
+      .then(responseJson => {
+        localStorage.userId = responseJson.userId;
+        this.setState({ toVote: true });
+      });
   }
 
   componentDidMount(){

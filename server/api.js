@@ -2,9 +2,14 @@ module.exports = (app, { User, Meme, Vote})=> {
 
 	app.post('/user', (req, res)=>{
 	User.create(req.body)
-		.then (()=> res.json({ message: 'User created' }))
+		.then((response)=> {
+			console.log(response);
+			res.json({
+				message: 'User created',
+				userId: response.dataValues.id
+			})
+		})
 		.catch(err => {
-			console.error(err);
 			res.status(500).json({ message: JSON.stringify(err) })
 		});
 	});
@@ -30,6 +35,12 @@ module.exports = (app, { User, Meme, Vote})=> {
 			.then(meme => res.json(meme));
 	});
 
+	app.get('/meme', (req, res)=> {
+		Meme.findAll().then(memes => {
+			res.json(memes);
+		})
+	});
+
 	app.post('/vote', (req, res)=>{
 		Vote.create(req.body)
 			.then (()=> res.json({ message: 'Vote created' }))
@@ -42,5 +53,11 @@ module.exports = (app, { User, Meme, Vote})=> {
 	app.get('/vote/:id', (req, res)=> {
 		Vote.findByPk(1*req.params.id)
 			.then(vote => res.json(vote));
+	});
+
+	app.get('/vote', (req, res)=> {
+		Vote.findAll().then(votes => {
+			res.json(votes);
+		})
 	});
 }
