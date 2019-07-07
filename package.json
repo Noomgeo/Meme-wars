@@ -5,6 +5,7 @@
   "proxy": "http://localhost:4000",
   "dependencies": {
     "express": "^4.17.1",
+    "node-sass": "^4.12.0",
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.3",
     "react": "^16.8.6",
