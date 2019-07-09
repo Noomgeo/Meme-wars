@@ -10,6 +10,10 @@ module.exports = (connection, ORM)=> {
 			allowNull: false,
 			unique: true,
 		},
+		passwordHash: {
+			type: ORM.TEXT,
+			allowNull: false,
+		},
 	}, { freezeTableName: true });
 
 	const Meme = connection.define('meme', {

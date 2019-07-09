@@ -1,5 +1,5 @@
 import React from 'react';
-import './Results.css';
+import './Results.scss';
 
 class Results extends React.Component {
   state = {
@@ -33,7 +33,7 @@ class Results extends React.Component {
   render(){
     return (
       <div className='Results Page'>
-        <div style={{ display: 'flex' }}>
+        <div className='lists'>
           <div>
             Winners:
               <ul>

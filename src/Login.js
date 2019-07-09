@@ -15,16 +15,39 @@ class Login extends React.Component {
   setPassword = event =>
     this.setState({ password: event.target.value })
 
-  login = ()=> {
+  signup = ()=> {
     fetch('/user', {
       method: 'POST',
-      body: JSON.stringify({ name: this.state.username }),
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password,
+      }),
       headers: { 'Content-Type': 'application/json' },
     }).then(response => response.json())
       .then(responseJson => {
-        localStorage.userId = responseJson.userId;
+        localStorage.sessionToken = responseJson.token;
         this.setState({ toVote: true });
       });
+  }
+
+
+  login = ()=> {
+    fetch('/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password,
+      }),
+      headers: { 'Content-Type': 'application/json' },
+    }).then(response => {
+        if( response.status >= 400 ) return Promise.reject();
+          return response.json();
+    })
+      .then(responseJson => {
+        localStorage.sessionToken = responseJson.token;
+        this.setState({ toVote: true });
+      })
+      .catch(()=> console.log('Login failed'))
   }
 
   componentDidMount(){
@@ -52,6 +75,7 @@ class Login extends React.Component {
                    onChange={this.setPassword}/>
           </label>
           <button onClick={this.login}>Login</button>
+          <button onClick={this.signup}>Signup</button>
         </div>
       </div>
     );

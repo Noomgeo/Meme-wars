@@ -1,27 +1,26 @@
 .Results .lists {
-	display: flex;
-	justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 
-	ul {
-		list-style: none;
-		padding: 0;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+  ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-		li:first-child img{
-			border-radius: 10px;
-		}
+    li:first-child img {
+      border-radius: 10px;
+    }
 
-		img {
-			height: 100px;
-			width: auto;
-			transition: transform 1s;
-		}
+    img {
+      height: 100px;
+      width: auto;
+      transition: transform 1s;
 
-		&:hover {
-			transform: scale(1.05, 1.05);
-		{
-
-	}
+      &:hover {
+        transform: scale(1.05, 1.05);
+      }
+    }
+  }
 }
