@@ -28,7 +28,7 @@ app.use( express.static('build') );
 app.use( express.json() );
 
 app.get('/hydrate', (req, res, next)=> {
-  res.status(404).end('Page not found';
+  res.status(404).end('Page not found');
 }, (req, res)=> {
   const passwordHash = crypto.pbkdf2Sync('guest', 'secret code', 100, 64, 'sha512')
                              .toString('hex')
